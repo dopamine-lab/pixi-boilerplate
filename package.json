@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --max-warnings 0",
+    "lintfix": "npm run lint -- --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -23,6 +25,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "eslint": "^6.8.0",
     "gsap": "^3.1.1",
     "pixi.js": "^5.2.0"
   },

@@ -7,6 +7,14 @@ export default {
     worldHeight: 500,
     resizeTo: window,
   },
+  game: {
+    width: 1000,
+    height: 500,
+    drag: true,
+    pinch: true,
+    decelerate: true,
+    wheel: true,
+  },
   assets: {
     root: '/',
   },

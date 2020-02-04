@@ -9,7 +9,6 @@
  */
 export function fit(element, { width, height }, ignoreRatio = false, overscale = false)
 {
-  console.error(width, height);
   const wScale = width / element.width;
   const hScale = height / element.height;
   const max = overscale ? Infinity : 1;

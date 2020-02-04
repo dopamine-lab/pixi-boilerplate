@@ -7,8 +7,9 @@
  * @param {Boolean} [ignoreRatio = true]
  * @param {Boolean} [overscale = false] - if true the scaled elememnt may have scale bigger then 1
  */
-export function fit(element, { width, height }, ignoreRatio = false, overscale = false) {
-	console.error(width, height)
+export function fit(element, { width, height }, ignoreRatio = false, overscale = false)
+{
+  console.error(width, height);
   const wScale = width / element.width;
   const hScale = height / element.height;
   const max = overscale ? Infinity : 1;
@@ -29,9 +30,10 @@ export function fit(element, { width, height }, ignoreRatio = false, overscale =
  * @param {Boolean} horizontally
  */
 export function center(element, { width, height },
-  { vertically = true, horizontally = true } = {}) {
+  { vertically = true, horizontally = true } = {})
+{
   /* eslint-disable no-param-reassign */
-  element.x = horizontally ? width / 2 - element.width / 2 : element.x;
-  element.y = vertically ? height / 2 - element.height / 2 : element.y;
+  element.x = horizontally ? (width / 2) - (element.width / 2) : element.x;
+  element.y = vertically ? (height / 2) - (element.height / 2) : element.y;
   /* eslint-enable no-param-reassign */
 }

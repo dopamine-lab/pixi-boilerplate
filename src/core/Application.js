@@ -1,6 +1,6 @@
 import { Sprite, Application } from 'pixi.js';
-import config from './config';
-import Game from './Game';
+import config from '../config';
+import Game from '../Game';
 import { Viewport } from 'pixi-viewport';
 import { center } from './utils';
 import Assets from './AssetManager';
@@ -31,9 +31,9 @@ export default class GameApplication extends Application
     this.viewport.addChild(this.game);
 
     center(this.viewport, this.config.view);
-    this.resizeScene();
+    this.onResize();
 
-    this.game.init();
+    this.game.start();
   }
 
   /**
@@ -53,7 +53,7 @@ export default class GameApplication extends Application
     });
 
     this.renderer.runners.resize.add({
-      resize: this.resizeScene.bind(this),
+      resize: this.onResize.bind(this),
     });
     document.body.appendChild(this.view);
 
@@ -74,7 +74,7 @@ export default class GameApplication extends Application
      * @param  {Number} width         The updated viewport width
      * @param  {Number} height        The updated viewport width
      */
-  resizeScene(width = this.config.view.width, height = this.config.view.height)
+  onResize(width = this.config.view.width, height = this.config.view.height)
   {
     center(this.background, { width, height });
     this.game.onResize(width, height);

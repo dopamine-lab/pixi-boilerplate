@@ -1,8 +1,8 @@
 import { Howl } from 'howler';
 import { Loader, Texture } from 'pixi.js';
-import config from './config';
+import config from '../config';
 
-const context = require.context('./assets', true, /\.(jpg|png|wav)$/im);
+const context = require.context('../assets', true, /\.(jpg|png|wav)$/im);
 
 const IMG_EXTENSIONS = ['jpeg', 'jpg', 'png'];
 const SOUND_EXTENSIONS = ['wav', 'ogg', 'm4a'];

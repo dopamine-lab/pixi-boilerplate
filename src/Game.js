@@ -1,4 +1,3 @@
-import Assets from './core/AssetManager';
 import Splash from './scenes/Splash';
 import Play from './scenes/Play';
 import { Container } from 'pixi.js';

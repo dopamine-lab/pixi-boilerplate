@@ -5,8 +5,6 @@ import { Viewport } from 'pixi-viewport';
 import { center } from './utils';
 import Assets from './AssetManager';
 
-import banner from './assets/banner.jpg';
-
 export default class GameApplication extends Application
 {
   constructor()
@@ -14,6 +12,7 @@ export default class GameApplication extends Application
     super(config.view);
 
     this.config = config;
+    Assets.renderer = this.renderer;
 
     this.setupViewport();
     this.initGame();
@@ -26,17 +25,15 @@ export default class GameApplication extends Application
    */
   async initGame()
   {
-    await Assets.load();
-    await Assets.prepareImages(this.renderer);
-
-    this.createBackground();
+    await this.createBackground();
 
     this.game = new Game();
     this.viewport.addChild(this.game);
 
     center(this.viewport, this.config.view);
     this.resizeScene();
-    this.game.spinCoin(true);
+
+    this.game.init();
   }
 
   /**
@@ -83,9 +80,14 @@ export default class GameApplication extends Application
     this.game.onResize(width, height);
   }
 
-  createBackground()
+  async createBackground()
   {
-    const sprite = Sprite.from(banner);
+    const images = { banner: Assets.images.banner };
+
+    await Assets.load({ images });
+    await Assets.prepareImages(images);
+
+    const sprite = Sprite.from('banner');
 
     this.stage.addChildAt(sprite);
     this.background = sprite;

@@ -1,13 +1,7 @@
 import { Sprite, Container, Texture } from 'pixi.js';
 import { TimelineMax } from 'gsap/all';
 import Assets from './AssetManager';
-
-import logo from './assets/logo.png';
-import logoBack from './assets/logo-back.png';
-
-import coinFlip1 from './assets/coinFlip1.wav';
-import coinFlip2 from './assets/coinFlip2.wav';
-import coinFlip3 from './assets/coinFlip3.wav';
+window.as = Assets;
 
 /**
  * Main game container, add your content here
@@ -20,12 +14,21 @@ export default class Game extends Container
   {
     super();
 
+    this.coin = null;
+  }
+
+  async init()
+  {
+    await this.preload();
+
     // create a sprite with the logo asset as texture and add it to the stage
-    const sprite = Sprite.from(logo);
+    const sprite = Sprite.from('logo');
 
     this.coin = sprite;
     this.addChild(sprite);
     sprite.anchor.set(0.5);
+
+    this.spinCoin(true);
   }
 
   async spinCoin(loop = false)
@@ -33,6 +36,25 @@ export default class Game extends Container
     await (this._doSpin().then());
 
     if (loop) await this.spinCoin(true);
+  }
+
+  async preload()
+  {
+    const images = {
+      logo: Assets.images.logo,
+      logoBack: Assets.images.logoBack,
+    };
+    const sounds = {
+      coinFlip1: Assets.sounds.coinFlip1,
+      coinFlip2: Assets.sounds.coinFlip2,
+      coinFlip3: Assets.sounds.coinFlip3,
+    };
+
+    // note that we don't use Promise.all here
+    // since images have to be loaded over the network first
+    // and then uploaded to the gpu
+    return Assets.load({ images, sounds })
+      .then(() => Assets.prepareImages(images));
   }
 
   /**
@@ -44,6 +66,8 @@ export default class Game extends Container
    */
   onResize(width, height) // eslint-disable-line no-unused-vars
   {
+    if (!this.coin) return;
+
     this.coin.x = this.width / 2;
     this.coin.y = this.height / 2;
   }
@@ -56,14 +80,14 @@ export default class Game extends Container
     // create a simple coin flip animation
     // and swap the sprite texture(to the coin back side) midway
     return new TimelineMax()
-      .call(() => Assets.sounds[coinFlip1].play())
+      .call(() => Assets.sounds.coinFlip1.play())
       .to(sprite.skew, duration / 2, { x: 0, y: 1.568 })
-      .call(() => sprite.texture = Texture.from(logoBack))
-      .call(() => Assets.sounds[coinFlip2].play())
+      .call(() => sprite.texture = Texture.from('logoBack'))
+      .call(() => Assets.sounds.coinFlip2.play())
       .to(sprite.skew, duration / 2, { x: 0, y: 3 })
       .to(sprite.skew, duration / 2, { x: 0, y: 4.568 })
-      .call(() => sprite.texture = Texture.from(logo))
-      .call(() => Assets.sounds[coinFlip3].play())
+      .call(() => sprite.texture = Texture.from('logo'))
+      .call(() => Assets.sounds.coinFlip3.play())
       .to(sprite.skew, duration / 2, { x: 0, y: 6 });
   }
 }

@@ -3,10 +3,8 @@ import { TimelineMax } from 'gsap/all';
 import Assets from '../core/AssetManager';
 import Scene from './Scene';
 
-export default class Play extends Scene
-{
-  async onCreated()
-  {
+export default class Play extends Scene {
+  async onCreated() {
     // create a sprite with the logo asset as texture and add it to the stage
     const sprite = Sprite.from('logo');
 
@@ -24,24 +22,20 @@ export default class Play extends Scene
    * @param  {Number} width  Window width
    * @param  {Number} height Window height
    */
-  onResize(width, height) // eslint-disable-line no-unused-vars
-  {
-    if (this.coin)
-    {
+  onResize(width, height) { // eslint-disable-line no-unused-vars
+    if (this.coin) {
       this.coin.x = this.width / 2;
       this.coin.y = this.height / 2;
     }
   }
 
-  async spinCoin(loop = false)
-  {
+  async spinCoin(loop = false) {
     await (this._doSpin().then());
 
     if (loop) await this.spinCoin(true);
   }
 
-  _doSpin()
-  {
+  _doSpin() {
     const duration = 1.5;
     const sprite = this.coin;
 

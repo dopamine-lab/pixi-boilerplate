@@ -4,11 +4,10 @@ import { Container } from 'pixi.js';
 /**
  * Scene abstract class, defines common scene methods
  * and implements assets preload method.
- * 
+ *
  * @abstract
  */
-export default class Scene extends Container
-{
+export default class Scene extends Container {
   /* eslint-disable */
   constructor()
   {
@@ -51,8 +50,7 @@ export default class Scene extends Container
   }
   /* eslint-enable */
 
-  get finish()
-  {
+  get finish() {
     return Promise.resolve();
   }
 }

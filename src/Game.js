@@ -7,25 +7,21 @@ import { Container } from 'pixi.js';
  *
  * @extends {PIXI.Container}
  */
-export default class Game extends Container
-{
-  constructor()
-  {
+export default class Game extends Container {
+  constructor() {
     super();
 
     this.currentScene = null;
   }
 
-  async start()
-  {
+  async start() {
     await this.switchScene(Splash);
     await this.currentScene.finish;
 
     this.switchScene(Play);
   }
 
-  switchScene(constructor)
-  {
+  switchScene(constructor) {
     this.removeChild(this.currentScene);
     this.currentScene = new constructor();
     this.addChild(this.currentScene);
@@ -40,8 +36,7 @@ export default class Game extends Container
    * @param  {Number} width  Window width
    * @param  {Number} height Window height
    */
-  onResize(width, height) // eslint-disable-line no-unused-vars
-  {
+  onResize(width, height) {
     if (this.currentScene === null) return;
 
     this.currentScene.onResize(width, height);

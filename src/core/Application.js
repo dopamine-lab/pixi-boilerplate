@@ -9,10 +9,8 @@ import Assets from './AssetManager';
  * Game entry point. Holds the game's viewport and responsive background
  * All configurations are described in src/config.js
  */
-export default class GameApplication extends Application
-{
-  constructor()
-  {
+export default class GameApplication extends Application {
+  constructor() {
     super(config.view);
 
     this.config = config;
@@ -27,8 +25,7 @@ export default class GameApplication extends Application
    * Creates the main game container.
    *
    */
-  async initGame()
-  {
+  async initGame() {
     await this.createBackground();
 
     this.game = new Game();
@@ -46,8 +43,7 @@ export default class GameApplication extends Application
      *
      * @return {PIXI.Application}
      */
-  setupViewport()
-  {
+  setupViewport() {
     const viewport = new Viewport({
       screenWidth: this.config.view.width,
       screenHeight: this.config.view.height,
@@ -79,8 +75,7 @@ export default class GameApplication extends Application
      * @param  {Number} width         The updated viewport width
      * @param  {Number} height        The updated viewport width
      */
-  onResize(width = this.config.view.width, height = this.config.view.height)
-  {
+  onResize(width = this.config.view.width, height = this.config.view.height) {
     center(this.background, { width, height });
     this.game.onResize(width, height);
   }
@@ -88,10 +83,9 @@ export default class GameApplication extends Application
   /**
    * Initializes the static background that is used to
    * fill the empty space around our game stage. This is used to compensate for the different browser window sizes.
-   * 
+   *
    */
-  async createBackground()
-  {
+  async createBackground() {
     const images = { banner: Assets.images.banner };
 
     await Assets.load({ images });

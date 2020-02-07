@@ -1,10 +1,8 @@
 import Assets from '../core/AssetManager';
 import Scene from './Scene';
 
-export default class Splash extends Scene
-{
-  preload()
-  {
+export default class Splash extends Scene {
+  preload() {
     const images = {
       logo: Assets.images.logo,
       logoBack: Assets.images.logoBack,

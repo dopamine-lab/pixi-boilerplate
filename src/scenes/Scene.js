@@ -1,6 +1,12 @@
 import Assets from '../core/AssetManager';
 import { Container } from 'pixi.js';
 
+/**
+ * Scene abstract class, defines common scene methods
+ * and implements assets preload method.
+ * 
+ * @abstract
+ */
 export default class Scene extends Container
 {
   /* eslint-disable */
@@ -9,10 +15,21 @@ export default class Scene extends Container
     super();
   }
 
-  onResize() {
+  /**
+   * Hook called on the current active scene, when the browser window is resized.
+   * Use this to re-arrange the game elements according to the window size
+   *
+   * @param  {Number} width  Window width
+   * @param  {Number} height Window height
+   */
+  onResize(width, height) {
 
   }
 
+  /**
+   * Define the assets used by this scene, so they can be loaded
+   * and used by all subsequent scenes
+   */
   async preload({images, sounds} = {})
   {
     // note that we don't use Promise.all here
@@ -22,6 +39,11 @@ export default class Scene extends Container
       .then(() => Assets.prepareImages(images));
   }
 
+  /**
+   * Called by the game when this scene's assets have been loaded that the content animations
+   * can be started from here
+   * 
+   */
   onCreated()
   {
 

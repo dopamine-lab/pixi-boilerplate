@@ -3,7 +3,7 @@ import Play from './scenes/Play';
 import { Container } from 'pixi.js';
 
 /**
- * Main game container, add your content here
+ * Main game stage, manages scenes/levels.
  *
  * @extends {PIXI.Container}
  */

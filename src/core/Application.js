@@ -5,6 +5,10 @@ import { Viewport } from 'pixi-viewport';
 import { center } from './utils';
 import Assets from './AssetManager';
 
+/**
+ * Game entry point. Holds the game's viewport and responsive background
+ * All configurations are described in src/config.js
+ */
 export default class GameApplication extends Application
 {
   constructor()
@@ -38,6 +42,7 @@ export default class GameApplication extends Application
 
   /**
      * Initialize the game world viewport.
+     * Supports handly functions like dragging and panning on the main game stage
      *
      * @return {PIXI.Application}
      */
@@ -80,6 +85,11 @@ export default class GameApplication extends Application
     this.game.onResize(width, height);
   }
 
+  /**
+   * Initializes the static background that is used to
+   * fill the empty space around our game stage. This is used to compensate for the different browser window sizes.
+   * 
+   */
   async createBackground()
   {
     const images = { banner: Assets.images.banner };

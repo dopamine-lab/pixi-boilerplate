@@ -7,6 +7,12 @@ const context = require.context('../assets', true, /\.(jpg|png|wav)$/im);
 const IMG_EXTENSIONS = ['jpeg', 'jpg', 'png'];
 const SOUND_EXTENSIONS = ['wav', 'ogg', 'm4a'];
 
+/**
+ * Global asset manager to help streamline asset usage in your game.
+ * Automatically scans and stores a manifest of all available assets, so that they could
+ * be loaded at any time
+ * 
+ */
 class AssetManager
 {
   constructor()
@@ -20,6 +26,21 @@ class AssetManager
     this._importAssets();
   }
 
+  /**
+   * The main method of the AssetManager, use this to load any desired assets
+   *
+   * ```js
+   * AssetManager.load({
+   *  images: {
+   *    logo: Assets.images.logo,
+   *    logoBack: Assets.images.logoBack,
+   *  }
+   * })
+   * ```
+   * 
+   * @type {Object} options.images id-url object map of the images to be loaded
+   * @type {Object} options.sounds id-url object map of the sounds to be loaded
+   */
   load({ images, sounds } = { images: this._images, sounds: this._sounds })
   {
     return Promise.all([
@@ -63,6 +84,11 @@ class AssetManager
     return new Promise(prepare.upload.bind(prepare));
   }
 
+  /**
+     * Create a Howl instance for each sound asset and load it.
+     *
+     * @return {Promise} Resolved when the assets files are downloaded and parsed into Howl objects
+     */
   loadSounds(sounds = {})
   {
     const soundPromises = [];
@@ -75,16 +101,25 @@ class AssetManager
     return soundPromises;
   }
 
+  /**
+   * Manifest of all available images
+   */
   get images()
   {
     return this._images;
   }
 
+  /**
+   * Manifest of all available sounds
+   */
   get sounds()
   {
     return this._sounds;
   }
 
+  /**
+   * Manifest of all available assets
+   */
   get assets()
   {
     return this._assets;
@@ -99,6 +134,12 @@ class AssetManager
     return new Promise((res) => sound.once('load', res));
   }
 
+  /**
+   * Scans the assets directory and creates a manifest of all available assets, split into categories.
+   * Currently supports images and sounds.
+   *
+   * @private
+   */
   _importAssets()
   {
     context.keys().forEach((filename) =>

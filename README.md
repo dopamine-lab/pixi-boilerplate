@@ -1,8 +1,12 @@
 # Pixi.js Project Template
-A Pixi.js Game project template with ES6 support via Babel 7 and Webpack 4 that includes hot-reloading for development and production-ready builds.
+Pixi.js project quick start. Takes care of loading assets and intiliazing the scene. Just drop your images and sounds, set your viewport size and start coding. Simple as that 😎
 
-Automatic asset scanning. All available assets are scanned during build and can be easily loaded from any level(scene).
-See example at `src/scenes/Splash.js`.
+Includes:
+* ES6 support via Babel 7 and Webpack 4 
+* hot-reloading for development and production-ready builds
+* out of the box loader with progress bar, see src/scenes/Splash.js
+* viewport fitting and resize handling
+* easy asset accessibility from everywhere
 
 ## Requirements
 

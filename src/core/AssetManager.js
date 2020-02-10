@@ -53,7 +53,7 @@ class AssetManager {
 
     const calcTotalProgress = (val) => {
       loadProgress += val / assetTypesCount;
-      progressCallback(parseInt(loadProgress));
+      progressCallback(parseInt(loadProgress, 10));
     };
 
     if (imagesCount) {

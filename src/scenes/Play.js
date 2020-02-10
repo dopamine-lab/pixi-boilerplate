@@ -1,6 +1,4 @@
-import { Sprite, Texture } from 'pixi.js';
-import { TimelineMax } from 'gsap/all';
-import Assets from '../core/AssetManager';
+import { Sprite } from 'pixi.js';
 import Scene from './Scene';
 
 export default class Play extends Scene {

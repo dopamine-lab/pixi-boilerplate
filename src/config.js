@@ -15,6 +15,11 @@ export default {
     decelerate: true,
     wheel: true,
   },
+  scenes: {
+    Splash: {
+      hideDelay: 2000,
+    },
+  },
   assets: {
     root: '/',
   },

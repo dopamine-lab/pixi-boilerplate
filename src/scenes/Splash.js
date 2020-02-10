@@ -1,6 +1,7 @@
 import Assets from '../core/AssetManager';
 import Scene from './Scene';
 import { Text } from 'pixi.js';
+import config from '../config';
 
 export default class Splash extends Scene {
   constructor() {
@@ -11,9 +12,16 @@ export default class Splash extends Scene {
       fill: 0xAA0044,
     });
 
+    this.config = config.scenes.Splash;
+
+    this.loadingText.anchor.set(0.5);
     this.loadingText.x = this.width / 2;
     this.loadingText.y = this.height / 2;
     this.addChild(this.loadingText);
+  }
+
+  get finish() {
+    return new Promise((res)=>setTimeout(res, this.config.hideDelay))
   }
 
   preload() {

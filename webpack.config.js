@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: 'production',
   devtool: "eval-source-map",
   module: {
     rules: [
@@ -30,8 +30,7 @@ module.exports = {
       root: path.resolve(__dirname, "../")
     }),
     new webpack.DefinePlugin({
-      CANVAS_RENDERER: JSON.stringify(true),
-      WEBGL_RENDERER: JSON.stringify(true)
+      PROD: JSON.stringify(process.env.NODE_ENV)
     }),
     new HtmlWebpackPlugin({
       template: "./index.html"

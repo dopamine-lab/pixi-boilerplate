@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --open --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --max-warnings 0",
     "lintfix": "npm run lint -- --fix"

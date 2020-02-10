@@ -4,8 +4,8 @@ Pixi.js project quick start. Takes care of loading assets and intiliazing the sc
 Includes:
 * ES6 support via Babel 7 and Webpack 4 
 * hot-reloading for development and production-ready builds
-* out of the box loader with progress bar, see src/scenes/Splash.js
-* viewport fitting and resize handling
+* out of the box loader with progress bar, see `src/scenes/Splash.js`
+* viewport fitting and resize handling, see `Application.setupViewport()` in `src/core/Application.js`
 * easy asset accessibility from everywhere
 
 ## Requirements

@@ -1,14 +1,16 @@
 import { Sprite } from 'pixi.js';
 import Scene from './Scene';
+import gsap from 'gsap';
 
 export default class Play extends Scene {
   async onCreated() {
-    // create a sprite with the logo asset as texture and add it to the stage
-    const sprite = Sprite.from('logo');
+    // create a sprite with the gamepad asset as texture and add it to the stage
+    const sprite = Sprite.from('gamepad');
 
-    this.coin = sprite;
     this.addChild(sprite);
     sprite.anchor.set(0.5);
+
+    gsap.to(sprite.scale, { x: 1.1, y: 1.1, duration: 1, repeat: -1, yoyo: true, ease: "power2.out" });
   }
 
   /**

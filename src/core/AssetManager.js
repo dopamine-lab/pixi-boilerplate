@@ -38,12 +38,33 @@ class AssetManager {
    *
    * @type {Object} options.images id-url object map of the images to be loaded
    * @type {Object} options.sounds id-url object map of the sounds to be loaded
+   * @type {Object} options.sounds id-url object map of the sounds to be loaded
+   * @type {Function} progressCallback Progress callback function, called every time a single asset is loaded
+   *
+   * @return {Promise} Returns a promise that is resolved once all assets are loaded
    */
-  load({ images, sounds } = { images: this._images, sounds: this._sounds }) {
-    return Promise.all([
-      this.loadImages(images),
-      this.loadSounds(sounds),
-    ]);
+  load(assets = { images: this._images, sounds: this._sounds }, progressCallback = () => {}) {
+    const { images, sounds } = assets;
+    const assetTypesCount = Object.keys(assets).length;
+    const imagesCount = images ? Object.keys(images).length : 0;
+    const soundsCount = sounds ? Object.keys(sounds).length : 0;
+    const loadPromises = [];
+    let loadProgress = 0;
+
+    const calcTotalProgress = (val) => {
+      loadProgress += val / assetTypesCount;
+      progressCallback(loadProgress);
+    };
+
+    if (imagesCount) {
+      loadPromises.push(this.loadImages(images, () => calcTotalProgress(100 / imagesCount)));
+    }
+
+    if (soundsCount) {
+      loadPromises.push(this.loadSounds(sounds, calcTotalProgress));
+    }
+
+    return Promise.all(loadPromises);
   }
 
   /**
@@ -51,12 +72,14 @@ class AssetManager {
      *
      * @return {Promise} Resolved when the assets files are downloaded and parsed into texture objects
      */
-  loadImages(images = {}) {
+  loadImages(images = {}, progressCallback = () => {}) {
     const loader = new Loader(config.root);
 
     for (const [img, url] of Object.entries(images)) {
       loader.add(img, url);
     }
+
+    loader.onProgress.add(() => progressCallback(loader.progress));
 
     return new Promise(loader.load.bind(loader));
   }
@@ -82,12 +105,15 @@ class AssetManager {
      *
      * @return {Promise} Resolved when the assets files are downloaded and parsed into Howl objects
      */
-  loadSounds(sounds = {}) {
+  loadSounds(sounds = {}, progressCallback = () => {}) {
     const soundPromises = [];
 
     for (const [id, url] of Object.entries(sounds)) {
       soundPromises.push(this._loadSound(id, url));
     }
+
+    // currently howler doesn't support loading progress
+    Promise.all(soundPromises).then(progressCallback(100));
 
     return soundPromises;
   }

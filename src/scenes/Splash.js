@@ -1,7 +1,21 @@
 import Assets from '../core/AssetManager';
 import Scene from './Scene';
+import { Text } from 'pixi.js';
 
 export default class Splash extends Scene {
+  constructor() {
+    super();
+
+    this.loadingText = new Text('0%', {
+      fontSize: 75,
+      fill: 0xAA0044,
+    });
+
+    this.loadingText.x = this.width / 2;
+    this.loadingText.y = this.height / 2;
+    this.addChild(this.loadingText);
+  }
+
   preload() {
     const images = {
       logo: Assets.images.logo,
@@ -14,5 +28,14 @@ export default class Splash extends Scene {
     };
 
     return super.preload({ images, sounds });
+  }
+
+  onResize(width, height) { // eslint-disable-line no-unused-vars
+    this.loadingText.x = width / 2;
+    this.loadingText.y = (height / 2) + 500;
+  }
+
+  onLoadProgress(val) {
+    this.loadingText.text = `${val}%`;
   }
 }

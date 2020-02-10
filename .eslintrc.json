@@ -62,7 +62,7 @@
         "no-case-declarations": 1,
         "no-div-regex": 1,
         "no-else-return": 1,
-        "no-empty-function": 1,
+        "no-empty-function": 0,
         "no-empty-pattern": 1,
         "no-eq-null": 1,
         "no-eval": 1,

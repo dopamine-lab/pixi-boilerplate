@@ -91,12 +91,12 @@ export default class GameApplication extends Application {
    *
    */
   async createBackground() {
-    const images = { banner: Assets.images.banner };
+    const images = { background: Assets.images.background };
 
     await Assets.load({ images });
     await Assets.prepareImages(images);
 
-    const sprite = Sprite.from('banner');
+    const sprite = Sprite.from('background');
 
     this.stage.addChildAt(sprite);
     this.background = sprite;

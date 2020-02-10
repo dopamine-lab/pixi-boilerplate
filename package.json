@@ -31,6 +31,6 @@
     "pixi-viewport": "^4.7.0",
     "pixi.js": "^5.2.0"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Dopamine Ltd.",
+  "license": "MIT"
 }

@@ -11,8 +11,6 @@ export default class Play extends Scene {
     this.coin = sprite;
     this.addChild(sprite);
     sprite.anchor.set(0.5);
-
-    this.spinCoin(true);
   }
 
   /**
@@ -23,33 +21,6 @@ export default class Play extends Scene {
    * @param  {Number} height Window height
    */
   onResize(width, height) { // eslint-disable-line no-unused-vars
-    if (this.coin) {
-      this.coin.x = this.width / 2;
-      this.coin.y = this.height / 2;
-    }
-  }
 
-  async spinCoin(loop = false) {
-    await (this._doSpin().then());
-
-    if (loop) await this.spinCoin(true);
-  }
-
-  _doSpin() {
-    const duration = 1.5;
-    const sprite = this.coin;
-
-    // create a simple coin flip animation
-    // and swap the sprite texture(to the coin back side) midway
-    return new TimelineMax()
-      .call(() => Assets.sounds.coinFlip1.play())
-      .to(sprite.skew, duration / 2, { x: 0, y: 1.568 })
-      .call(() => sprite.texture = Texture.from('logoBack'))
-      .call(() => Assets.sounds.coinFlip2.play())
-      .to(sprite.skew, duration / 2, { x: 0, y: 3 })
-      .to(sprite.skew, duration / 2, { x: 0, y: 4.568 })
-      .call(() => sprite.texture = Texture.from('logo'))
-      .call(() => Assets.sounds.coinFlip3.play())
-      .to(sprite.skew, duration / 2, { x: 0, y: 6 });
   }
 }

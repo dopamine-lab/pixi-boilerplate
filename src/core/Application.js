@@ -53,9 +53,9 @@ export default class GameApplication extends Application {
       interaction: this.renderer.plugins.interaction,
     });
 
-    this.renderer.runners.resize.add({
-      resize: this.onResize.bind(this),
-    });
+    // this.renderer.runners.resize.add({
+    //   resize: this.onResize.bind(this),
+    // });
     document.body.appendChild(this.view);
 
     this.stage.addChild(viewport);

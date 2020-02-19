@@ -6,4 +6,4 @@ if (process.env.NODE_ENV === 'development') {
   window.PIXI = PIXI;
 }
 
-document.addEventListener('DOMContentLoaded', new Application());
+document.addEventListener('DOMContentLoaded', window.app = new Application());

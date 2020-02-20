@@ -1,16 +1,13 @@
 import { Sprite } from 'pixi.js';
 import Scene from './Scene';
 import gsap from 'gsap';
+import Wolf from '../animations/Wolf';
 
 export default class Play extends Scene {
   async onCreated() {
-    // create a sprite with the gamepad asset as texture and add it to the stage
-    const sprite = Sprite.from('gamepad');
+    const wolfAnimation = new Wolf.stage;
 
-    this.addChild(sprite);
-    sprite.anchor.set(0.5);
-
-    gsap.to(sprite.scale, { x: 1.1, y: 1.1, duration: 1, repeat: -1, yoyo: true, ease: "power2.out" });
+    this.addChild(wolfAnimation);
   }
 
   /**

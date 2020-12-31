@@ -1,16 +1,11 @@
-# Pixi.js Project Template
-Pixi.js project quick start. Takes care of loading assets and intiliazing the scene. Just drop your images and sounds, set your viewport size and start coding. Simple as that 😎
+# Pixi Boilerplate
+Takes care of loading assets and intiliazing the scene. Just drop your images and sounds, set your viewport size and start coding.
 
 Includes:
-* ES6 support via Babel 7 and Webpack 4 
-* hot-reloading for development and production-ready builds
-* out of the box loader with progress bar, see `src/scenes/Splash.js`
-* viewport fitting and resize handling, see `Application.setupViewport()` in `src/core/Application.js`
-* easy asset accessibility from everywhere
-
-## Requirements
-
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
+* 📦 Bundling via Webpack
+* 🏝 Scene management
+* ✨ Out of the box loader with progress bar, see `src/scenes/Splash.js`
+* 📐 Viewport fitting and resize handling, see `Application.setupViewport()` in `src/core/Application.js`
 
 ## Available Commands
 

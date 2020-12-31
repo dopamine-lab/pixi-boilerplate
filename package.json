@@ -8,7 +8,8 @@
     "start": "webpack-dev-server --open --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --max-warnings 0",
-    "lintfix": "npm run lint -- --fix"
+    "lintfix": "npm run lint -- --fix",
+    "release": "standard-version"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -18,6 +19,7 @@
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "raw-loader": "^3.1.0",
+    "standard-version": "^9.1.0",
     "terser-webpack-plugin": "^2.2.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
@@ -29,7 +31,7 @@
     "gsap": "^3.1.1",
     "howler": "^2.1.3",
     "pixi-viewport": "^4.7.0",
-    "pixi.js": "^5.2.0"
+    "pixi.js": "^5.3.7"
   },
   "author": "Dopamine Ltd.",
   "license": "Apache-2.0"
